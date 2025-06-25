@@ -57,16 +57,28 @@ function ConversationalAi() {
             ? "clickedConversationalAiButton"
             : "conversationalAiButton"
         }
-        id="conversationButton"
         onClick={hadleButtonClick}
         title={conversation ? "Detener conversación" : "Iniciar conversación"}
       >
         <span className="icon">
           {conversation ? (
-            <img src={StopImg} className="icon" alt="Imagen de Stop" width={"100%"} />
+            <img
+              src={StopImg}
+              className="icon"
+              alt="Imagen de Stop"
+              width={"100%"}
+            />
           ) : (
-            <img src={AgentImg} className="icon" alt="Imagen del agente de IA" width={"100%"} />
+            <img
+              src={AgentImg}
+              className="icon"
+              alt="Imagen del agente de IA"
+              width={"100%"}
+            />
           )}
+        </span>
+        <span className="conversationLabel">
+          {conversation ? "Detener conversación" : "Iniciar conversación"}
         </span>
       </button>
     </>

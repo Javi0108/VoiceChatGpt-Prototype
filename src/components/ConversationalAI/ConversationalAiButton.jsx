@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../style/ConversationalAI/ConversationalAiButton.css";
 import AgentImg from "../../assets/agent.svg";
-import ConversationalAi from "./ConversationalAi";
+import ConversationalAi from "./ConversationalAI";
 
 function ConversationalAiButton() {
   const [wasStarted, setWasStarted] = useState(false);

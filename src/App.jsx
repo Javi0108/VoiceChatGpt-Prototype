@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import TextToSpeech from "./components/TextToSpeech";
-import ConversationalAi from "./components/ConversationalAi";
+import ConversationalAiButton from "./components/ConversationalAI/ConversationalAiButton";
 import "./style/App.css";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      <h1>¿Que tienes en mente hoy?</h1>
+      <span className="title">¿Que tienes en mente hoy?</span>
       <div className="container">
         <textarea
           className="promptText"
@@ -19,7 +19,7 @@ function App() {
         ></textarea>
         <div className="optionButtons">
           <TextToSpeech text={text} />
-          <ConversationalAi />
+          <ConversationalAiButton />
         </div>
       </div>
     </>

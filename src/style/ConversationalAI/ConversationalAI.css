@@ -1,0 +1,43 @@
+.conversationContainer {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: #212121;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.controlerButtons {
+  position: absolute;
+  bottom: 4rem;
+  right: 50%;
+  transform: translateX(50%);
+  gap: 10px;
+}
+
+.stopButton {
+  width: 65%;
+  border-radius: 50px;
+  background-color: #ff0000;
+  border: 0px;
+  padding: 0px 10px;
+}
+
+.stopButton:hover {
+  background-color: #ff4d4d;
+}
+
+@media screen and (max-width: 768px) {
+  .stopButton {
+    width: 100%;
+    padding: 0px 5px;
+  }
+}

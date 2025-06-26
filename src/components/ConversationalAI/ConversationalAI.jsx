@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import "../../style/ConversationalAI/ConversationalAI.css";
+import StopImg from "../../assets/stop.svg";
 import { Conversation } from "@elevenlabs/client";
-import "../style/ConversationalAi.css";
-import AgentImg from "../assets/agent.svg";
-import StopImg from "../assets/stop.svg";
+import SphereVisualizer from "../Sphere";
 
-function ConversationalAi() {
+function ConversationalAi({ active, onClose }) {
   const [connected, setConnected] = useState(false);
   const [conversation, setConversation] = useState(null);
+  const hasStarted = useRef(false);
 
   async function startConversation() {
+    if (hasStarted.current) return;
+    hasStarted.current = true;
+
     try {
       // Request microphone permission
       await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -28,6 +32,7 @@ function ConversationalAi() {
       });
 
       setConversation(newConversation);
+      hasStarted.current = true;
     } catch (error) {
       console.error("Failed to start conversation:", error);
     }
@@ -38,50 +43,45 @@ function ConversationalAi() {
       conversation.endSession();
       setConversation(null);
       setConnected(false);
+      hasStarted.current = false;
     }
   }
 
-  const hadleButtonClick = () => {
-    if (conversation) {
+  useEffect(() => {
+    startConversation();
+
+    return () => {
       stopConversation();
-    } else {
-      startConversation();
-    }
+    };
+  }, []);
+
+  const handleStopClick = () => {
+    stopConversation();
+    if (onClose) onClose();
   };
 
+  if (!active) return null; 
+
   return (
-    <>
-      <button
-        className={
-          conversation
-            ? "clickedConversationalAiButton"
-            : "conversationalAiButton"
-        }
-        onClick={hadleButtonClick}
-        title={conversation ? "Detener conversación" : "Iniciar conversación"}
-      >
-        <span className="icon">
-          {conversation ? (
+    <div className="conversationContainer">
+      <SphereVisualizer />
+      <div className="controlerButtons">
+        <button
+          className="stopButton"
+          onClick={handleStopClick}
+          title={"Detener conversación"}
+        >
+          <span className="icon">
             <img
               src={StopImg}
               className="icon"
               alt="Imagen de Stop"
               width={"100%"}
             />
-          ) : (
-            <img
-              src={AgentImg}
-              className="icon"
-              alt="Imagen del agente de IA"
-              width={"100%"}
-            />
-          )}
-        </span>
-        <span className="conversationLabel">
-          {conversation ? "Detener conversación" : "Iniciar conversación"}
-        </span>
-      </button>
-    </>
+          </span>
+        </button>
+      </div>
+    </div>
   );
 }
 

@@ -8,6 +8,12 @@
   align-items: center;
 }
 
+.title {
+  font-size: 45px;
+  font-weight: bolder;
+  margin-bottom: 1rem;
+}
+
 .container {
   width: 75%;
   display: flex;
@@ -21,7 +27,8 @@
 }
 
 .promptText {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  width: 100%;
+  font-family: "Onest", sans-serif;
   font-size: 1rem;
   background-color: transparent;
   border-color: transparent;
@@ -38,6 +45,12 @@
 }
 
 @media screen and (max-width: 768px) {
+  .title {
+    font-size: 31px;
+    font-weight: bolder;
+    margin-bottom: 1rem;
+  }
+
   .container {
     background-color: transparent;
     border: none;

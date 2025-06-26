@@ -25,6 +25,7 @@ function ConversationalAi({ active, onClose }) {
         },
         onDisconnect: () => {
           setConnected(false);
+          if (onClose) onClose();
         },
         onError: (error) => {
           console.error("Error:", error);

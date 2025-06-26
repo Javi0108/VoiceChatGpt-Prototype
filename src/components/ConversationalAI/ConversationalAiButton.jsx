@@ -22,7 +22,7 @@ function ConversationalAiButton() {
       <button
         className={"conversationalAiButton"}
         onClick={handleButtonClick}
-        title="Iniciar conversación"
+        title="Iniciar conversación con IA"
       >
         <span className="icon">
           <img

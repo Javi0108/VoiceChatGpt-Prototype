@@ -29,10 +29,15 @@
   background-color: #ff0000;
   border: 0px;
   padding: 0px 10px;
+  transition: background-color 0.3s ease;
 }
 
 .stopButton:hover {
-  background-color: #ff4d4d;
+  background-color: #e14747;
+}
+
+.stopButton:active {
+  background-color: #a00000;
 }
 
 @media screen and (max-width: 768px) {

@@ -5,7 +5,6 @@ import * as THREE from "three";
 const Sphere = ({ volume }) => {
   const meshRef = useRef();
 
-  // Shader uniforms
   const uniforms = useMemo(
     () => ({
       u_color1: { value: new THREE.Color("#ffffff") },
@@ -19,20 +18,18 @@ const Sphere = ({ volume }) => {
     if (meshRef.current) {
       const scale = 1 + volume / 100;
       meshRef.current.scale.set(scale, scale, scale);
-
-      // Animar el tiempo del shader (opcional, para añadir movimiento)
       uniforms.u_time.value = clock.getElapsedTime();
     }
   });
 
   return (
     <mesh ref={meshRef}>
-      <sphereGeometry args={[0.5, 64, 64]} />
+      <sphereGeometry args={[0.75, 32, 32]} />
       <shaderMaterial
         uniforms={uniforms}
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
-        side={THREE.FrontSide}
+        side={THREE.DoubleSide}
       />
     </mesh>
   );
@@ -106,7 +103,7 @@ const SphereVisualizer = () => {
 
   return (
     <Canvas>
-      <pointLight position={[5, 5, 5]} />
+      <pointLight position={[1, 1, 1]} />
       <Sphere volume={volume} />
     </Canvas>
   );

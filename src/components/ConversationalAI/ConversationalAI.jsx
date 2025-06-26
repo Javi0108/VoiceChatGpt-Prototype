@@ -69,7 +69,7 @@ function ConversationalAi({ active, onClose }) {
         <button
           className="stopButton"
           onClick={handleStopClick}
-          title={"Detener conversación"}
+          title={"Finalizar"}
         >
           <span className="icon">
             <img

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "../../style/ConversationalAI/ConversationalAI.css";
 import StopImg from "../../assets/stop.svg";
 import { Conversation } from "@elevenlabs/client";
-import SphereVisualizer from "../Sphere";
+import SphereVisualizer from "../Sphere/Sphere";
 
 function ConversationalAi({ active, onClose }) {
   const [connected, setConnected] = useState(false);
@@ -48,13 +48,13 @@ function ConversationalAi({ active, onClose }) {
     }
   }
 
-  useEffect(() => {
-    startConversation();
+  // useEffect(() => {
+  //   startConversation();
 
-    return () => {
-      stopConversation();
-    };
-  }, []);
+  //   return () => {
+  //     stopConversation();
+  //   };
+  // }, []);
 
   const handleStopClick = () => {
     stopConversation();

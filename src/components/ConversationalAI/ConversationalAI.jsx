@@ -7,7 +7,19 @@ import SphereVisualizer from "../Sphere/Sphere";
 function ConversationalAi({ active, onClose }) {
   const [connected, setConnected] = useState(false);
   const [conversation, setConversation] = useState(null);
+  const [fadeIn, setFadeIn] = useState(false);
   const hasStarted = useRef(false);
+
+  useEffect(() => {
+    if (active) {
+      // Delay para permitir que el DOM se monte antes de activar la animación
+      setTimeout(() => {
+        setFadeIn(true);
+      }, 10);
+    } else {
+      setFadeIn(false);
+    }
+  }, [active]);
 
   async function startConversation() {
     if (hasStarted.current) return;
@@ -48,23 +60,23 @@ function ConversationalAi({ active, onClose }) {
     }
   }
 
-  useEffect(() => {
-    startConversation();
+  // useEffect(() => {
+  //   startConversation();
 
-    return () => {
-      stopConversation();
-    };
-  }, []);
+  //   return () => {
+  //     stopConversation();
+  //   };
+  // }, []);
 
   const handleStopClick = () => {
     stopConversation();
     if (onClose) onClose();
   };
 
-  if (!active) return null; 
+  if (!active) return null;
 
   return (
-    <div className="conversationContainer">
+    <div className={`conversationContainer ${fadeIn ? "fade-in" : ""}`}>
       <SphereVisualizer />
       <div className="controlerButtons">
         <button

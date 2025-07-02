@@ -5,16 +5,17 @@ import CustomShaderMaterial from 'three-custom-shader-material/vanilla'
 import { mergeVertices } from 'three/examples/jsm/utils/BufferGeometryUtils'
 import vertexShader from "./shaders/sphere/vertex.glsl";
 import fragmentShader from "./shaders/sphere/fragment.glsl";
+import Loader from "../Loader"
 
-const Sphere = ({ volume }) => {
+const Sphere = ({ volume, onReady }) => {
   const meshRef = useRef();
 
   const uniforms = useMemo(
     () => ({
       uTime: new THREE.Uniform(0) ,
-      uPositionFrequency: new THREE.Uniform(0.5), // 0.75
-      uTimeFrequency: new THREE.Uniform(0.2), // 0.2
-      uStrength: new THREE.Uniform(0.25), // 0.3
+      uPositionFrequency: new THREE.Uniform(0.5),
+      uTimeFrequency: new THREE.Uniform(0.2),
+      uStrength: new THREE.Uniform(0.25),
       uWarpPositionFrequency: new THREE.Uniform(0.38),
       uWarpTimeFrequency: new THREE.Uniform(0.12),
       uWarpStrength: new THREE.Uniform(0.7),
@@ -52,8 +53,9 @@ const Sphere = ({ volume }) => {
       emissiveIntensity: 0.5,
       transparent: true,
       wireframe: false,
+      onBeforeCompile: () => onReady?.()
     })
-  }, [uniforms])
+  }, [uniforms, onReady])
 
   const depthMaterial = useMemo(() => {
     return new CustomShaderMaterial({
@@ -80,6 +82,7 @@ const Sphere = ({ volume }) => {
 
 const SphereVisualizer = () => {
   const [volume, setVolume] = useState(0);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     let audioContext;
@@ -115,9 +118,13 @@ const SphereVisualizer = () => {
   }, []);
 
   return (
+    <>
+    {!isReady && <Loader />}
     <Canvas>
-      <Sphere volume={volume} />
+      <Sphere volume={volume} onReady={() => setIsReady(true)} />
     </Canvas>
+    </>
+    
   );
 };
 

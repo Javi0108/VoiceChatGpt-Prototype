@@ -1,16 +1,23 @@
 .conversationContainer {
-  position: absolute;
+  position: fixed;
   top: 0px;
   right: 0px;
   background-color: #212121;
   width: 100vw;
   height: 100vh;
+  transition: opacity 0.3s ease-in-out;
   opacity: 0;
-  animation: fadeIn 0.3s ease-in forwards;
-  z-index: 1000;
+  z-index: 9999;
+}
+
+.conversationContainer.fade-in {
+  opacity: 1;
 }
 
 @keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
   to {
     opacity: 1;
   }
@@ -18,10 +25,11 @@
 
 .controlerButtons {
   position: absolute;
-  bottom: 4rem;
+  bottom: 10%;
   right: 50%;
-  transform: translateX(50%);
-  gap: 10px;
+  transform: translate(50%, 10%);
+  display: flex;
+  justify-content: center;
 }
 
 .stopButton {

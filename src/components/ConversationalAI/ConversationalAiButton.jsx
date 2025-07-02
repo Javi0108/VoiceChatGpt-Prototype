@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../style/ConversationalAI/ConversationalAiButton.css";
 import AgentImg from "../../assets/agent.svg";
-import ConversationalAi from "./ConversationalAi";
+import ConversationalAI from "./ConversationalAI";
 
 function ConversationalAiButton() {
   const [wasStarted, setWasStarted] = useState(false);
@@ -34,7 +34,7 @@ function ConversationalAiButton() {
         </span>
         <span className="conversationLabel">Iniciar Conversación</span>
       </button>
-      {wasStarted && <ConversationalAi active={active} onClose={handleOnClose} />}
+      {wasStarted && <ConversationalAI active={active} onClose={handleOnClose} />}
     </>
   );
 }

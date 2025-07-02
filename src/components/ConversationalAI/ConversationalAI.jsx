@@ -4,7 +4,7 @@ import StopImg from "../../assets/stop.svg";
 import { Conversation } from "@elevenlabs/client";
 import SphereVisualizer from "../Sphere/Sphere";
 
-function ConversationalAi({ active, onClose }) {
+function ConversationalAI({ active, onClose }) {
   const [connected, setConnected] = useState(false);
   const [conversation, setConversation] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
@@ -98,4 +98,4 @@ function ConversationalAi({ active, onClose }) {
   );
 }
 
-export default ConversationalAi;
+export default ConversationalAI;

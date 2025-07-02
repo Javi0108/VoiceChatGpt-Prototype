@@ -28,8 +28,9 @@ const Sphere = ({ volume, onReady }) => {
   useFrame(({ clock }) => {
     if (meshRef.current) {
       const scale = 1 + volume / 100;
+      meshRef.current.scale.set(scale * 0.65, scale * 0.65, scale * 0.75);
       uniforms.uPositionFrequency.value = scale * 0.75;
-      uniforms.uTime.value = clock.getElapsedTime() * 0.5;
+      uniforms.uTime.value = clock.getElapsedTime() * 0.75;
     }
   });
 

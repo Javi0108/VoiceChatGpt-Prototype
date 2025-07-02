@@ -60,13 +60,13 @@ function ConversationalAI({ active, onClose }) {
     }
   }
 
-  // useEffect(() => {
-  //   startConversation();
+  useEffect(() => {
+    startConversation();
 
-  //   return () => {
-  //     stopConversation();
-  //   };
-  // }, []);
+    return () => {
+      stopConversation();
+    };
+  }, []);
 
   const handleStopClick = () => {
     stopConversation();

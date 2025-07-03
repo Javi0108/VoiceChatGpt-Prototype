@@ -37,7 +37,7 @@ const Sphere = ({ volume, onReady }) => {
   });
 
   const geometry = useMemo(() => {
-    const geo = new THREE.IcosahedronGeometry(0.5, 64);
+    const geo = new THREE.IcosahedronGeometry(0.75, 64);
     const merged = mergeVertices(geo);
     merged.computeTangents();
     return merged;

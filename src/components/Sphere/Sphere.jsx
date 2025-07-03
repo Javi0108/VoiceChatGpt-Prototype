@@ -1,26 +1,27 @@
 import React, { useRef, useEffect, useState, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import CustomShaderMaterial from 'three-custom-shader-material/vanilla'
-import { mergeVertices } from 'three/examples/jsm/utils/BufferGeometryUtils'
+import CustomShaderMaterial from "three-custom-shader-material/vanilla";
+import { mergeVertices } from "three/examples/jsm/utils/BufferGeometryUtils";
 import vertexShader from "./shaders/sphere/vertex.glsl";
 import fragmentShader from "./shaders/sphere/fragment.glsl";
-import Loader from "../Loader"
+import Loader from "../Loader";
 
 const Sphere = ({ volume, onReady }) => {
   const meshRef = useRef();
 
   const uniforms = useMemo(
     () => ({
-      uTime: new THREE.Uniform(0) ,
+      uTime: new THREE.Uniform(0),
       uPositionFrequency: new THREE.Uniform(0.5),
-      uTimeFrequency: new THREE.Uniform(0.2),
-      uStrength: new THREE.Uniform(0.25),
+      uTimeFrequency: new THREE.Uniform(0.4), // 0.12
+      uStrength: new THREE.Uniform(0.3), // 0.25
       uWarpPositionFrequency: new THREE.Uniform(0.38),
       uWarpTimeFrequency: new THREE.Uniform(0.12),
       uWarpStrength: new THREE.Uniform(0.7),
-      uColorA: new THREE.Uniform(new THREE.Color("#ffffff")),
-      uColorB: new THREE.Uniform(new THREE.Color("#0079FE")),
+      uColorA: new THREE.Uniform(new THREE.Color("#0025F6")),
+      uColorB: new THREE.Uniform(new THREE.Color("#7BF5FD")),
+      uColorC: new THREE.Uniform(new THREE.Color("#E946F8")),
     }),
     []
   );
@@ -29,17 +30,18 @@ const Sphere = ({ volume, onReady }) => {
     if (meshRef.current) {
       const scale = 1 + volume / 100;
       meshRef.current.scale.set(scale * 0.65, scale * 0.65, scale * 0.75);
-      uniforms.uPositionFrequency.value = scale * 0.75;
-      uniforms.uTime.value = clock.getElapsedTime() * 0.75;
+      uniforms.uPositionFrequency.value = scale;
+      uniforms.uStrength.value = scale * 0.1;
+      uniforms.uTime.value = clock.getElapsedTime() * 0.5;
     }
   });
 
   const geometry = useMemo(() => {
-    const geo = new THREE.IcosahedronGeometry(0.5, 64)
-    const merged = mergeVertices(geo)
-    merged.computeTangents()
-    return merged
-  }, [])
+    const geo = new THREE.IcosahedronGeometry(0.5, 64);
+    const merged = mergeVertices(geo);
+    merged.computeTangents();
+    return merged;
+  }, []);
 
   const material = useMemo(() => {
     return new CustomShaderMaterial({
@@ -47,16 +49,16 @@ const Sphere = ({ volume, onReady }) => {
       vertexShader: vertexShader,
       fragmentShader: fragmentShader,
       uniforms,
-      metalness: 1,
+      metalness: 0,
       roughness: 0.5,
-      color: '#0079FE',
-      emissive: '#0079FE',
-      emissiveIntensity: 0.5,
+      transmission: 0,
+      ior: 1.5,
+      thickness: 1.5,
       transparent: true,
       wireframe: false,
-      onBeforeCompile: () => onReady?.()
-    })
-  }, [uniforms, onReady])
+      onBeforeCompile: () => onReady?.(),
+    });
+  }, [uniforms, onReady]);
 
   const depthMaterial = useMemo(() => {
     return new CustomShaderMaterial({
@@ -64,21 +66,21 @@ const Sphere = ({ volume, onReady }) => {
       vertexShader: vertexShader,
       uniforms,
       depthPacking: THREE.RGBADepthPacking,
-    })
-  }, [uniforms])
+    });
+  }, [uniforms]);
 
   return (
     <>
       <mesh
-        ref={meshRef} 
+        ref={meshRef}
         geometry={geometry}
         material={material}
         customDepthMaterial={depthMaterial}
       />
-      <ambientLight intensity={1} />
-      <pointLight position={[0, 0, 3]} intensity={100} />
+      {/* <ambientLight intensity={5} /> */}
+      <directionalLight position={[0, 0, 1]} intensity={5} color="#ffffff" />
     </>
-  )
+  );
 };
 
 const SphereVisualizer = () => {
@@ -120,12 +122,11 @@ const SphereVisualizer = () => {
 
   return (
     <>
-    {!isReady && <Loader />}
-    <Canvas>
-      <Sphere volume={volume} onReady={() => setIsReady(true)} />
-    </Canvas>
+      {!isReady && <Loader />}
+      <Canvas>
+        <Sphere volume={volume} onReady={() => setIsReady(true)} />
+      </Canvas>
     </>
-    
   );
 };
 

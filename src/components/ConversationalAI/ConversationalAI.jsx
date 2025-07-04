@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "../../style/ConversationalAI/ConversationalAI.css";
 import StopImg from "../../assets/stop.svg";
 import { Conversation } from "@elevenlabs/client";
-import SphereVisualizer from "../Sphere/Sphere";
+import Circle from "../Circle/Circle";
 
 function ConversationalAI({ active, onClose }) {
   const [connected, setConnected] = useState(false);
@@ -77,7 +77,7 @@ function ConversationalAI({ active, onClose }) {
 
   return (
     <div className={`conversationContainer ${fadeIn ? "fade-in" : ""}`}>
-      <SphereVisualizer />
+      <Circle colors={["#4ab7ff", "#D3F4FA"]} />
       <div className="controlerButtons">
         <button
           className="stopButton"

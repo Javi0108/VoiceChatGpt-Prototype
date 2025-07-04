@@ -10,6 +10,10 @@
   z-index: 9999;
 }
 
+.conversationContainer.light {
+  background-color: #FFFFFF;
+}
+
 .conversationContainer.fade-in {
   opacity: 1;
 }

@@ -1,5 +1,5 @@
 .conversationalAiButton {
-  width: 22.5%;
+  width: 30%;
   border-radius: 50px;
   border: 1px solid #1a1a1a;
   background-color: #1a1a1a;
@@ -24,7 +24,7 @@
 }
 
 .clickedConversationalAiButton {
-  width: 22.5%;
+  width: 30%;
   border-radius: 50px;
   border: 0px;
   background-color: #c82424;

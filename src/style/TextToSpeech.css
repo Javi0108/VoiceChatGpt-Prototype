@@ -1,5 +1,7 @@
 .textToSpeechButton {
-    width: 22.5%;
+    width: 30%;
+    font-size: 25px;
+    padding: 0px 5px;
     border-radius: 50px;
     border: 0px;
     background-color: transparent;
@@ -8,7 +10,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
     outline: none;
     cursor: pointer;
 }
@@ -18,10 +19,13 @@
 }
 
 .clickedTextToSpeechButton {
-    width: 22.5%;
+    width: 30%;
+    font-size: 25px;
+    padding: 0px 5px;
     border-radius: 50px;
     border: 0px;
     background-color: rgb(74, 183, 255);
+    color: white;
     transition: all 0.25s;
     display: flex;
     flex-direction: row;

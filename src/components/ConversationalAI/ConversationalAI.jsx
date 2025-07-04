@@ -4,7 +4,7 @@ import StopImg from "../../assets/stop.svg";
 import { Conversation } from "@elevenlabs/client";
 import Circle from "../Circle/Circle";
 
-function ConversationalAI({ active, onClose }) {
+function ConversationalAI({ active, onClose, dark }) {
   const [connected, setConnected] = useState(false);
   const [conversation, setConversation] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
@@ -76,7 +76,7 @@ function ConversationalAI({ active, onClose }) {
   if (!active) return null;
 
   return (
-    <div className={`conversationContainer ${fadeIn ? "fade-in" : ""}`}>
+    <div className={`conversationContainer ${!dark ? "light" : ""} ${fadeIn ? "fade-in" : ""}`}>
       <Circle colors={["#4ab7ff", "#D3F4FA"]} />
       <div className="controlerButtons">
         <button

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../style/TextToSpeech.css";
-import SpeakerImg from "../assets/speaker.svg";
 
 function TextToSpeech(text) {
   const [reading, setReading] = useState(false);
@@ -54,8 +53,7 @@ function TextToSpeech(text) {
       title="Leer en voz alta"
     >
       <span className="icon">
-        {/* <i className="bi bi-mic"></i> */}
-        <img src={SpeakerImg} alt="Imagen del agente de IA" width={"100%"} />
+        <i className="bi bi-volume-up-fill"></i>
       </span>
     </button>
   );

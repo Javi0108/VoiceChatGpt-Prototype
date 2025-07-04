@@ -1,8 +1,17 @@
 :root {
   font-family: "Onest", sans-serif;
   line-height: 1.5;
+  transition: all .3s ease-in-out;
+}
 
-  color-scheme: light dark;
+:root.light {
+  color-scheme: light;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #ffffff;
+}
+
+:root.dark {
+  color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #212121;
 }

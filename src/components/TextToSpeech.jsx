@@ -50,7 +50,7 @@ function TextToSpeech(text) {
       className={reading ? "clickedTextToSpeechButton" : "textToSpeechButton"}
       onClick={handeClick}
       disabled = {reading ? "disabled" : ""}
-      title="Leer en voz alta"
+      title="Read aloud"
     >
       <span className="icon">
         <i className="bi bi-volume-up-fill"></i>

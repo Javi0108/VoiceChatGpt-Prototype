@@ -22,7 +22,7 @@ function ConversationalAiButton({ dark }) {
       <button
         className={"conversationalAiButton"}
         onClick={handleButtonClick}
-        title="Iniciar conversación con IA"
+        title="Start conversation with an IA"
       >
         <span className="icon">
           <img
@@ -32,7 +32,7 @@ function ConversationalAiButton({ dark }) {
             width={"100%"}
           />
         </span>
-        <span className="conversationLabel">Iniciar Conversación</span>
+        <span className="conversationLabel">Start conversation</span>
       </button>
       {wasStarted && <ConversationalAI active={active} onClose={handleOnClose} dark={dark} />}
     </>

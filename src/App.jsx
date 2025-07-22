@@ -30,12 +30,12 @@ function App() {
 
   return (
     <>
-      <span className="title">¿Que tienes en mente hoy?</span>
+      <span className="title">What's on your mind today?</span>
       <div className={dark ? "container" : "container light"}>
         <textarea
           ref={textAreaRef}
           className="promptText"
-          placeholder="Escribe algo..."
+          placeholder="Write something..."
           onChange={(e) => setText(e.target.value)}
           onInput={handleInput}
           cols={65}
